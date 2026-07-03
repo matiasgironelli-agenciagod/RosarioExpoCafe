@@ -17,24 +17,24 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex py-2 items-center justify-between">
           {/* Logo / Branding */}
-          <div className="flex items-center relative">
-            <a href="#" className="flex items-center group">
+          <div className="flex items-center">
+            <a href="#" className="flex flex-col items-center group relative pt-1 pb-2">
               {!logoError ? (
                 <img
                   src="/REC png.png"
                   alt="Rosario EXPO CAFE Logo"
-                  className="h-24 md:h-32 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
+                  className="h-20 md:h-24 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
                   onError={() => setLogoError(true)}
                 />
               ) : (
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-brand-green-dark/20 bg-brand-green-light/40 shadow-sm">
-                  <Coffee className="h-8 w-8 text-brand-green-dark" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-green-dark/20 bg-brand-green-light/40 shadow-sm">
+                  <Coffee className="h-6 w-6 text-brand-green-dark" />
                 </div>
               )}
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-25 bg-brand-brown-dark text-brand-cream text-[7px] md:text-[8px] font-black uppercase tracking-[0.15em] px-2.5 py-0.5 rounded-full border border-brand-green-dark/25 shadow-sm animate-pulse-gentle select-none pointer-events-none whitespace-nowrap">
+                Segunda Edición
+              </div>
             </a>
-            <div className="absolute bottom-1 left-8 md:left-12 z-25 bg-brand-brown-dark text-brand-cream text-[8px] md:text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-brand-green-dark/25 shadow-sm rotate-[-3deg] select-none pointer-events-none">
-              Segunda Edición
-            </div>
           </div>
 
           {/* Desktop Navigation */}
