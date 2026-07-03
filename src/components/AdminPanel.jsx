@@ -29,32 +29,74 @@ export default function AdminPanel() {
   const [selectedWorkshopId, setSelectedWorkshopId] = useState(workshops[0]?.id || '');
   const [workshopSearch, setWorkshopSearch] = useState('');
 
-  // Check login session in localStorage
+  // Check login session in localStorage and Supabase
   useEffect(() => {
     const session = localStorage.getItem('rosario_expo_admin_session');
     if (session === 'true') {
-      setIsAuthenticated(true);
-      fetchData();
+      if (supabase) {
+        supabase.auth.getSession().then(({ data: { session: sbSession } }) => {
+          if (sbSession) {
+            setIsAuthenticated(true);
+            fetchData();
+          } else {
+            localStorage.removeItem('rosario_expo_admin_session');
+          }
+        });
+      } else {
+        setIsAuthenticated(true);
+        fetchData();
+      }
     }
   }, []);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoginError('');
-    if (username === 'rosarioexpocafe' && password === 'pregot2026') {
-      setIsAuthenticated(true);
-      localStorage.setItem('rosario_expo_admin_session', 'true');
-      fetchData();
-    } else {
-      setLoginError('Usuario o contraseña incorrectos.');
+    setLoading(true);
+
+    try {
+      if (supabase) {
+        // Map simple username 'rosarioexpocafe' to the secure Supabase email
+        const emailToAuth = username.includes('@') 
+          ? username 
+          : (username === 'rosarioexpocafe' ? 'admin@rosarioexpocafe.com' : `${username}@rosarioexpocafe.com`);
+
+        const { error } = await supabase.auth.signInWithPassword({
+          email: emailToAuth,
+          password: password
+        });
+
+        if (error) throw error;
+
+        setIsAuthenticated(true);
+        localStorage.setItem('rosario_expo_admin_session', 'true');
+        fetchData();
+      } else {
+        // Fallback Local Demo Mode
+        if (username === 'rosarioexpocafe' && password === 'pregot2026') {
+          setIsAuthenticated(true);
+          localStorage.setItem('rosario_expo_admin_session', 'true');
+          fetchData();
+        } else {
+          throw new Error('Usuario o contraseña incorrectos.');
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      setLoginError(err.message === 'Invalid login credentials' ? 'Usuario o contraseña incorrectos.' : (err.message || 'Error al iniciar sesión.'));
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setIsAuthenticated(false);
     localStorage.removeItem('rosario_expo_admin_session');
     setUsername('');
     setPassword('');
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
   };
 
   const fetchData = async () => {
