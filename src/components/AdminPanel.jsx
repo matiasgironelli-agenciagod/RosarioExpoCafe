@@ -8,7 +8,6 @@ import {
   Download, 
   LogOut, 
   Coffee, 
-  Calendar, 
   Eye, 
   EyeOff, 
   Loader2, 
@@ -131,11 +130,7 @@ export default function AdminPanel() {
   // Calculations for dashboard
   const totalGeneralCount = generalRegs.length;
   const totalWorkshopCount = workshopRegs.length;
-  
-  // Calculate aggregate workshop utilization
-  const totalCapacity = workshops.reduce((acc, curr) => acc + curr.capacity, 0);
-  const totalOccupiedSeats = workshopRegs.length;
-  const averageOcupation = totalCapacity > 0 ? Math.round((totalOccupiedSeats / totalCapacity) * 100) : 0;
+  const totalActiveWorkshops = workshops.length;
 
   // Filtered lists
   const filteredGeneral = generalRegs.filter(reg => {
@@ -321,10 +316,10 @@ export default function AdminPanel() {
           <div className="border border-brand-green-dark/15 bg-white p-6 rounded-2xl shadow-sm flex items-center justify-between">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-brand-green-dark/50">
-                Ocupación Workshops
+                Talleres Activos
               </span>
               <p className="font-chaloops text-4xl font-black text-brand-green-dark mt-2">
-                {loading ? '...' : `${averageOcupation}%`}
+                {totalActiveWorkshops}
               </p>
             </div>
             <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-green-dark/10 bg-brand-green-light/40 text-brand-green-dark shadow-sm">
@@ -333,40 +328,31 @@ export default function AdminPanel() {
           </div>
         </div>
 
-        {/* Sección Workshops - Barras de Ocupación Visuales */}
+        {/* Sección Workshops - Inscripciones por Taller */}
         <div className="border border-brand-green-dark/15 bg-white p-6 sm:p-8 rounded-[2rem] shadow-sm mb-8">
           <h2 className="font-chaloops text-xl font-black text-brand-green-dark mb-6">
-            Ocupación por Workshop
+            Inscriptos por Workshop
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {workshops.map(ws => {
               const currentSeats = getWorkshopCounts(ws.id);
-              const capacity = ws.capacity;
-              const percent = Math.min(100, Math.round((currentSeats / capacity) * 100));
-              const isFull = currentSeats >= capacity;
 
               return (
-                <div key={ws.id} className="border border-brand-green-dark/10 bg-brand-cream/30 p-5 rounded-2xl shadow-sm">
-                  <h3 className="font-serif text-sm font-black text-brand-green-dark line-clamp-1 mb-1" title={ws.title}>
-                    {ws.title}
-                  </h3>
-                  <p className="text-[10px] font-bold text-brand-green-dark/50 uppercase tracking-wider mb-4 line-clamp-1">
-                    {ws.speaker}
-                  </p>
-
-                  <div className="flex items-end justify-between text-xs font-bold text-brand-green-dark mb-1">
-                    <span>Inscriptos</span>
-                    <span className={isFull ? 'text-red-500 font-black' : ''}>
-                      {currentSeats} / {capacity}
-                    </span>
+                <div key={ws.id} className="border border-brand-green-dark/10 bg-brand-cream/30 p-5 rounded-2xl shadow-sm flex flex-col justify-between min-h-[140px]">
+                  <div>
+                    <h3 className="font-serif text-sm font-black text-brand-green-dark line-clamp-2 mb-1" title={ws.title}>
+                      {ws.title}
+                    </h3>
+                    <p className="text-[10px] font-bold text-brand-green-dark/50 uppercase tracking-wider mb-4 line-clamp-1">
+                      {ws.speaker}
+                    </p>
                   </div>
 
-                  {/* Progress Bar Container */}
-                  <div className="w-full bg-brand-green-dark/10 h-3 rounded-full overflow-hidden border border-brand-green-dark/5">
-                    <div 
-                      className={`h-full transition-all duration-500 ${isFull ? 'bg-red-500' : 'bg-brand-green-dark'}`}
-                      style={{ width: `${percent}%` }}
-                    />
+                  <div className="flex items-end justify-between border-t border-brand-green-dark/10 pt-3 text-xs font-bold text-brand-green-dark">
+                    <span>Total Inscriptos</span>
+                    <span className="text-brand-brown-dark font-black text-sm">
+                      {currentSeats}
+                    </span>
                   </div>
                 </div>
               );
@@ -492,7 +478,7 @@ export default function AdminPanel() {
                 >
                   {workshops.map(ws => (
                     <option key={ws.id} value={ws.id}>
-                      {ws.title} ({getWorkshopCounts(ws.id)}/{ws.capacity})
+                      {ws.title} ({getWorkshopCounts(ws.id)})
                     </option>
                   ))}
                 </select>

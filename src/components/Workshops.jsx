@@ -146,9 +146,6 @@ export default function Workshops() {
         {/* Visual Chronogram / Timeline Layout */}
         <div className="relative space-y-12 before:absolute before:top-2 before:bottom-2 before:left-4 md:before:left-1/2 before:w-[2px] before:bg-brand-brown-dark/20">
           {workshops.map((workshop, index) => {
-            const currentRegistered = counts[workshop.id] || 0;
-            const remainingSeats = Math.max(0, workshop.capacity - currentRegistered);
-            const isFull = remainingSeats <= 0;
             const isSuccess = successStatus[workshop.id];
             const isLoading = loadingStatus[workshop.id];
             const errorMsg = errors[workshop.id];
@@ -188,8 +185,8 @@ export default function Workshops() {
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-green-dark/20 bg-brand-green-light/40 px-3 py-1 text-xs font-bold text-brand-green-dark">
                         <Sparkles className="h-3 w-3" /> Taller Gratuito
                       </span>
-                      <span className={`text-xs font-black uppercase tracking-wider ${isFull ? 'text-red-500' : 'text-brand-brown-dark'}`}>
-                        {isFull ? 'Cupos Agotados' : `${remainingSeats} lugares disponibles`}
+                      <span className="text-xs font-black uppercase tracking-wider text-brand-brown-dark">
+                        Inscripción Abierta
                       </span>
                     </div>
 
@@ -215,12 +212,6 @@ export default function Workshops() {
                         <CheckCircle className="mx-auto h-8 w-8 text-brand-green-dark mb-2 animate-bounce" />
                         <p className="text-xs font-bold text-brand-green-dark">
                           ¡Pre-inscripto con éxito! Te reservamos tu lugar.
-                        </p>
-                      </div>
-                    ) : isFull ? (
-                      <div className="border border-red-150 bg-red-50/50 p-4 rounded-xl text-center">
-                        <p className="text-xs font-bold text-red-500">
-                          Se ha alcanzado el límite máximo de participantes.
                         </p>
                       </div>
                     ) : (
