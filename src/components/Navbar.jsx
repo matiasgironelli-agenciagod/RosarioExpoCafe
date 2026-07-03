@@ -18,7 +18,7 @@ export default function Navbar() {
         <div className="flex py-2 items-center justify-between">
           {/* Logo / Branding */}
           <div className="flex items-center">
-            <a href="#" className="flex flex-col items-center group relative pt-1 pb-2">
+            <a href="#" className="flex items-center gap-1 group relative">
               {!logoError ? (
                 <img
                   src="/REC png.png"
@@ -31,9 +31,9 @@ export default function Navbar() {
                   <Coffee className="h-6 w-6 text-brand-green-dark" />
                 </div>
               )}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-25 bg-brand-brown-dark text-brand-cream text-[7px] md:text-[8px] font-black uppercase tracking-[0.15em] px-2.5 py-0.5 rounded-full border border-brand-green-dark/25 shadow-sm animate-pulse-gentle select-none pointer-events-none whitespace-nowrap">
-                Segunda Edición
-              </div>
+              <span className="bg-brand-brown-dark text-brand-cream text-[7px] md:text-[8px] font-black uppercase tracking-[0.12em] px-2 py-0.5 rounded border border-brand-green-dark/15 shadow-sm animate-pulse-gentle select-none pointer-events-none whitespace-nowrap mt-3 rotate-[-3deg]">
+                2da Edición
+              </span>
             </a>
           </div>
 
