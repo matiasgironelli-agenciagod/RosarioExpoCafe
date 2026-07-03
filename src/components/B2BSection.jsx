@@ -213,7 +213,7 @@ export default function B2BSection() {
                 </div>
 
                 <a 
-                  href="https://wa.me/5493413001234?text=Hola!%20Quiero%20más%20información%20sobre%20los%20stands%20y%20exposición%20B2B%20de%20Rosario%20EXPO%20CAFE."
+                  href="https://wa.me/5493412296868?text=Hola!%20Quiero%20más%20información%20sobre%20los%20stands%20y%20exposición%20B2B%20de%20Rosario%20EXPO%20CAFE."
                   target="_blank"
                   rel="noreferrer noopener"
                   className="w-full flex items-center justify-center gap-2 border border-green-500/20 bg-green-50 text-green-600 hover:bg-green-600 hover:text-white py-3.5 text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-sm"
