@@ -35,7 +35,7 @@ export default function Footer() {
               target="_blank" 
               rel="noreferrer noopener" 
               aria-label="Instagram"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-brand-cream bg-transparent hover:bg-brand-green-light hover:text-brand-green-dark hover:border-brand-green-light transition-all shadow-[2px_2px_0px_#fff0de] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none text-brand-cream"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-brand-cream/30 bg-transparent hover:bg-brand-cream hover:text-brand-green-dark transition-all text-brand-cream shadow-sm"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
@@ -44,14 +44,14 @@ export default function Footer() {
               target="_blank" 
               rel="noreferrer noopener" 
               aria-label="Facebook"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-brand-cream bg-transparent hover:bg-brand-green-light hover:text-brand-green-dark hover:border-brand-green-light transition-all shadow-[2px_2px_0px_#fff0de] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none text-brand-cream"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-brand-cream/30 bg-transparent hover:bg-brand-cream hover:text-brand-green-dark transition-all text-brand-cream shadow-sm"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
             <button 
               onClick={scrollToTop}
               aria-label="Volver arriba"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border-2 border-brand-green-dark bg-brand-green-light text-brand-green-dark hover:bg-brand-cream hover:text-brand-green-dark transition-all shadow-[2px_2px_0px_#204532] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-brand-green-dark/20 bg-brand-green-light text-brand-green-dark hover:bg-brand-cream hover:text-brand-green-dark transition-all shadow-sm"
             >
               <ArrowUp className="h-5 w-5" />
             </button>

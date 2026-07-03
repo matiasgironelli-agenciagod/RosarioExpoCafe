@@ -54,7 +54,7 @@ export default function Navbar() {
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md border-2 border-brand-green-dark bg-brand-green-light text-brand-green-dark shadow-brutal-sm hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all"
+              className="inline-flex items-center justify-center p-2 rounded-xl border border-brand-green-dark/15 bg-white text-brand-green-dark shadow-sm hover:shadow transition-all"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -64,13 +64,13 @@ export default function Navbar() {
 
       {/* Mobile Navigation Drawer */}
       {isOpen && (
-        <div className="md:hidden border-t-2 border-brand-green-dark bg-brand-cream px-4 pt-2 pb-6 space-y-3">
+        <div className="md:hidden border-t border-brand-green-dark/10 bg-brand-cream/98 px-4 pt-4 pb-6 space-y-3 shadow-md">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="block rounded-lg border-2 border-brand-green-dark bg-white px-4 py-3 text-base font-bold uppercase tracking-wider text-brand-green-dark shadow-brutal-sm"
+              className="block rounded-xl border border-brand-green-dark/10 bg-white px-4 py-3.5 text-sm font-bold uppercase tracking-wider text-brand-green-dark shadow-sm"
             >
               {link.name}
             </a>
@@ -78,7 +78,7 @@ export default function Navbar() {
           <a
             href="#registro"
             onClick={() => setIsOpen(false)}
-            className="block text-center neo-brutal-btn-dark py-3 rounded-lg"
+            className="block text-center neo-brutal-btn-dark py-3.5 rounded-xl text-xs"
           >
             Registrarme gratis
           </a>
