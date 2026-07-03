@@ -19,7 +19,7 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const isAdminRoute = currentHash === '#/admin' || currentHash.startsWith('#/admin');
+  const isAdminRoute = currentHash === '#/admin' || currentHash === '#admin' || currentHash.startsWith('#/admin') || currentHash.startsWith('#admin');
 
   if (isAdminRoute) {
     return (
