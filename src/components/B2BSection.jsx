@@ -3,7 +3,7 @@ import { Briefcase, Handshake, ShieldCheck, Mail, CheckCircle } from 'lucide-rea
 import ScrollReveal from './ScrollReveal';
 
 export default function B2BSection() {
-  const [formData, setFormData] = useState({ company: '', contactName: '', email: '', type: 'Expositor' });
+  const [formData, setFormData] = useState({ company: '', contactName: '', email: '', phone: '', type: 'Expositor' });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -21,7 +21,7 @@ export default function B2BSection() {
       
       setSuccess(true);
       setLoading(false);
-      setFormData({ company: '', contactName: '', email: '', type: 'Expositor' });
+      setFormData({ company: '', contactName: '', email: '', phone: '', type: 'Expositor' });
     }, 800);
   };
 
@@ -144,22 +144,38 @@ export default function B2BSection() {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-brand-green-dark/70 mb-2">
-                    Correo Electrónico Corporativo
-                  </label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-3 flex items-center text-brand-green-dark/30">
-                      <Mail className="h-4 w-4" />
-                    </span>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-brand-green-dark/70 mb-2">
+                      WhatsApp / Teléfono
+                    </label>
                     <input
-                      type="email"
+                      type="tel"
                       required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="nombre@empresa.com"
-                      className="w-full border border-brand-green-dark/20 bg-white pl-10 pr-3 py-3 text-xs font-medium text-brand-green-dark rounded-xl shadow-sm focus:outline-none focus:border-brand-green-dark/50 transition-all placeholder:text-brand-green-dark/30"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="Ej. +54 9 341 1234567"
+                      className="w-full border border-brand-green-dark/20 bg-white p-3 text-xs font-medium text-brand-green-dark rounded-xl shadow-sm focus:outline-none focus:border-brand-green-dark/50 transition-all placeholder:text-brand-green-dark/30"
                     />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-brand-green-dark/70 mb-2">
+                      Correo Corporativo
+                    </label>
+                    <div className="relative">
+                      <span className="absolute inset-y-0 left-3 flex items-center text-brand-green-dark/30">
+                        <Mail className="h-4 w-4" />
+                      </span>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="nombre@empresa.com"
+                        className="w-full border border-brand-green-dark/20 bg-white pl-10 pr-3 py-3 text-xs font-medium text-brand-green-dark rounded-xl shadow-sm focus:outline-none focus:border-brand-green-dark/50 transition-all placeholder:text-brand-green-dark/30"
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -186,6 +202,27 @@ export default function B2BSection() {
                 >
                   {loading ? 'Enviando...' : 'Enviar Solicitud B2B'}
                 </button>
+
+                <div className="relative flex items-center justify-center my-4">
+                  <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div className="w-full border-t border-brand-green-dark/10"></div>
+                  </div>
+                  <div className="relative flex justify-center text-[10px] uppercase">
+                    <span className="bg-white px-3 font-bold text-brand-green-dark/50">O escríbenos directamente</span>
+                  </div>
+                </div>
+
+                <a 
+                  href="https://wa.me/5493413001234?text=Hola!%20Quiero%20más%20información%20sobre%20los%20stands%20y%20exposición%20B2B%20de%20Rosario%20EXPO%20CAFE."
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="w-full flex items-center justify-center gap-2 border border-green-500/20 bg-green-50 text-green-600 hover:bg-green-600 hover:text-white py-3.5 text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-sm"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-whatsapp shrink-0" viewBox="0 0 16 16">
+                    <path d="M13.601 2.326A7.85 7.85 0 0 0 8 0a7.85 7.85 0 0 0-7.563 5.887 7.86 7.86 0 0 0 1.082 3.97L0 16l4.24-1.113a7.96 7.96 0 0 0 3.76 1.081h.001c4.321 0 7.842-3.52 7.843-7.84a7.84 7.84 0 0 0-2.283-5.546zM8 14.333a6.76 6.76 0 0 1-3.473-.96l-.25-.148-2.584.678.69-2.522-.162-.262a6.761 6.761 0 0 1-1.036-3.6C1.248 4.417 4.27 1.39 8 1.39c1.82 0 3.53.71 4.82 2s2 3 2 4.82c-.001 3.77-3.027 6.797-6.8 6.797zM11.5 9.5c-.195-.1-.1.29-.75.29-.262 0-.585-.148-.962-.487-.306-.27-.585-.563-.82-.888-.235-.325-.347-.563-.347-.563s.112-.125.25-.262c.1-.1.15-.225.225-.325.075-.1.037-.225-.012-.325-.05-.1-.45-1.075-.612-1.475-.162-.387-.325-.337-.45-.337-.112 0-.25-.013-.387-.013s-.363.05-.55.25c-.187.2-.712.7-.712 1.712s.737 1.987.837 2.125c.1.137 1.45 2.212 3.512 3.1 2.062.888 2.062.588 2.437.55.375-.037 1.2-.5 1.363-1 .162-.5.162-.925.112-1-.05-.075-.187-.125-.375-.225z"/>
+                  </svg>
+                  <span>Enviar Mensaje de WhatsApp</span>
+                </a>
               </form>
             )}
           </ScrollReveal>
