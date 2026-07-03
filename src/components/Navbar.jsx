@@ -17,7 +17,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex py-2 items-center justify-between">
           {/* Logo / Branding */}
-          <div className="flex items-center">
+          <div className="flex items-center relative">
             <a href="#" className="flex items-center group">
               {!logoError ? (
                 <img
@@ -32,6 +32,9 @@ export default function Navbar() {
                 </div>
               )}
             </a>
+            <div className="absolute bottom-1 left-8 md:left-12 z-25 bg-brand-brown-dark text-brand-cream text-[8px] md:text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-brand-green-dark/25 shadow-sm rotate-[-3deg] select-none pointer-events-none">
+              Segunda Edición
+            </div>
           </div>
 
           {/* Desktop Navigation */}
